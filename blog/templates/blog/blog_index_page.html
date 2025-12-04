@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+{% block content %}
+{% comment %} <h1>Hello welcome to our first blog!</h1> {% endcomment %}
+<h1>{{page.title|richtext}}</h1>
+{{page.description|richtext}}
+{% endblock %}

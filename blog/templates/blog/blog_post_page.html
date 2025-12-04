@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<div class="blog-post-container">
+    <h1>{{page.title|richtext}}</h1>
+</div>
+{% with authors=page.authors.all %}
+{% if authors %}
+    <div class="author-info">
+        <ul>
+            {% for author in authors  %}
+            <li class="author-item">
+                {% image author.author_image fill-60x60%}
+                <span>
+                    {{author.name}}
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="date">Published on: {{page.date}}</p>
+{% endif %}
+{% endwith %}
+<div class="intro">
+    <h2><b>{{page.intro|richtext}}</b></h2>
+</div>
+<div class="body">
+    {{ page.body|richtext }}
+</div>
+
+{% with images=page.image_gallery.all %}
+    {% if images %}
+        <div class="images">
+            {% for image in images %}
+                <div class="gallery_item">
+                    {% image image.images fill-340x340 %}
+                    <p>{{ image.caption }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+{% with tags=page.tags.all %}
+    {% if tags %}
+        {% for tag in tags %}
+            <a href="#" class="tag-button">
+                {{tag}}
+            </a>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="140" viewBox="0 0 1200 140" preserveAspectRatio="xMinYMid meet">
+  <title>Soft fluffy cloud strip for Daisy</title>
+  <defs>
+    <!-- soft pink glow filter -->
+    <filter id="pink-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feFlood flood-color="#ffdbea" result="flood"/>
+      <feComposite in="flood" in2="SourceAlpha" operator="in" result="mask"/>
+      <feGaussianBlur in="mask" stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- subtle darker pink shadow under clouds -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="sblur"/>
+      <feOffset dx="0" dy="6" result="off"/>
+      <feFlood flood-color="#ffcfdd" flood-opacity="0.45" result="col"/>
+      <feComposite in="col" in2="off" operator="in" result="sh"/>
+      <feMerge>
+        <feMergeNode in="sh"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- a repeating pattern block width (keeps design tile-friendly) -->
+    <pattern id="tileWidth" patternUnits="userSpaceOnUse" width="1200" height="140" x="0" y="0">
+      <rect x="0" y="0" width="1200" height="140" fill="transparent"/>
+    </pattern>
+  </defs>
+
+  <!-- transparent base so it tiles over white; the pink glows make clouds visible on white -->
+  <rect width="1200" height="140" fill="transparent"/>
+
+  <!-- faint pink sweeping background band for contrast -->
+  <path d="M0,90 C150,40 400,140 600,100 C800,60 1050,140 1200,90 L1200,140 L0,140 Z"
+        fill="#fff1f6" opacity="0.9"/>
+
+  <!-- cloud group 1 (left) -->
+  <g transform="translate(60,20)" filter="url(#shadow)">
+    <ellipse cx="40" cy="48" rx="42" ry="28" fill="#ffffff" />
+    <ellipse cx="95" cy="40" rx="56" ry="36" fill="#ffffff" />
+    <ellipse cx="155" cy="52" rx="44" ry="30" fill="#ffffff" />
+    <ellipse cx="110" cy="64" rx="90" ry="32" fill="#ffffff" />
+  </g>
+  <!-- glow for group 1 -->
+  <g transform="translate(60,20)" filter="url(#pink-glow)" opacity="0.65">
+    <ellipse cx="110" cy="62" rx="120" ry="36" fill="#ffdbea"/>
+  </g>
+
+  <!-- cloud group 2 (middle) -->
+  <g transform="translate(380,6)" filter="url(#shadow)">
+    <ellipse cx="40" cy="48" rx="36" ry="24" fill="#ffffff" />
+    <ellipse cx="90" cy="36" rx="68" ry="40" fill="#ffffff" />
+    <ellipse cx="150" cy="50" rx="48" ry="30" fill="#ffffff" />
+    <ellipse cx="110" cy="62" rx="86" ry="30" fill="#ffffff" />
+  </g>
+  <g transform="translate(380,6)" filter="url(#pink-glow)" opacity="0.62">
+    <ellipse cx="110" cy="66" rx="120" ry="36" fill="#ffdbea"/>
+  </g>
+
+  <!-- cloud group 3 (right) -->
+  <g transform="translate(760,10)" filter="url(#shadow)">
+    <ellipse cx="32" cy="46" rx="36" ry="26" fill="#ffffff"/>
+    <ellipse cx="86" cy="36" rx="64" ry="38" fill="#ffffff"/>
+    <ellipse cx="140" cy="50" rx="46" ry="30" fill="#ffffff"/>
+    <ellipse cx="100" cy="62" rx="82" ry="30" fill="#ffffff"/>
+  </g>
+  <g transform="translate(760,10)" filter="url(#pink-glow)" opacity="0.6">
+    <ellipse cx="100" cy="64" rx="110" ry="34" fill="#ffdbea"/>
+  </g>
+
+  <!-- trailing small fluff to help tiling blend -->
+  <g transform="translate(1080,26)" filter="url(#shadow)">
+    <ellipse cx="18" cy="30" rx="26" ry="18" fill="#ffffff"/>
+    <ellipse cx="44" cy="26" rx="32" ry="22" fill="#ffffff"/>
+  </g>
+  <g transform="translate(1080,26)" filter="url(#pink-glow)" opacity="0.45">
+    <ellipse cx="44" cy="34" rx="64" ry="22" fill="#ffdbea"/>
+  </g>
+</svg>
+

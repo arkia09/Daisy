@@ -1,18 +1,27 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %}homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-{% endblock extra_css %}
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+{% endblock %}
 
 {% block content %}
 
-{{ page.body|richtext}}
+<div class="cloud-layer">
+     <div class="cloud small"></div>
+    <div class="cloud"></div>
+    <div class="cloud large"></div>
+</div>
 
-{% endblock content %}
+<div class="home-hero">
+    <h1>{{ page.title }}</h1>
+    <p>Welcome to Daisy, your soft and cozy corner of the internet.</p>
+</div>
+
+<div class="home-wrapper">
+    {{ page.body|richtext }}
+</div>
+
+{% endblock %}
