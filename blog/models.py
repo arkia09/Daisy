@@ -15,16 +15,31 @@ class BlogIndexPage(Page):
     description = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [FieldPanel("description")]
+    def get_context(self, request):
+        context = super().get_context(request)
+        blogposts = self.get_children().live().order_by("-first_published_at")
+
+        context["blogposts"] = blogposts
+
+        return context
 
 class BlogPostTag(TaggedItemBase):
     content_object = ParentalKey("BlogPostPage", related_name="tagged_items", on_delete=models.CASCADE)
 
 class BlogPostPage(Page):
-    date = models.DateTimeField("Post Date", default= datetime.now())
+    date = models.DateTimeField("Post Date", default= datetime.now)
     intro = RichTextField(blank=True)
     body = RichTextField(blank = True)
     authors = ParentalManyToManyField("blog.Author", blank=True)
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
+
+    def main_image(self):
+        thumbnail_image = self.image_gallery.first
+        if thumbnail_image:
+            return thumbnail_image.image
+        else:
+            return None
+        
     content_panels = Page.content_panels + [FieldPanel("date"),
                                             FieldPanel("authors", widget=forms.CheckboxSelectMultiple),
                                             FieldPanel("intro"),
@@ -52,4 +67,11 @@ class Author(models.Model):
     
 
 class TagIndexPage(Page):
-    pass
+    def get_context(self, request):
+        tag = request.GET.get("tag")
+        blogposts = BlogPostPage.objects.filter(tags__name=tag).distinct()
+
+        context = super().get_context(request)
+        context["blogposts"] = blogposts
+        return context
+

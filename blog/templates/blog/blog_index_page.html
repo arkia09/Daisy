@@ -1,7 +1,21 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags%}
 {% block content %}
 {% comment %} <h1>Hello welcome to our first blog!</h1> {% endcomment %}
 <h1>{{page.title|richtext}}</h1>
 {{page.description|richtext}}
+{% for post in blogposts %}
+<div class="blog-post">
+    <a href="{% pageurl post %}">
+        {{post.title.}}
+    </a>
+    {% with thumbnail_image=post.specific.main_image %}
+    {% if thumbnail_image %}
+    <div class="thumbnail-image">
+        {% image thumbnail_image fill-300x200%}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+{% endfor %}
 {% endblock %}

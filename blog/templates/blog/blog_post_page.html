@@ -40,11 +40,14 @@
         </div>
     {% endif %}
 {% endwith %}
+<a href="{{page.get_parent.url}}">
+    Back to blog
+</a><br>
 
 {% with tags=page.tags.all %}
     {% if tags %}
         {% for tag in tags %}
-            <a href="#" class="tag-button">
+            <a href="{% slugurl "tags" %}?tag={{tag}}" class="tag-button">
                 {{tag}}
             </a>
         {% endfor %}
