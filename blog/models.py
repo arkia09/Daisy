@@ -34,9 +34,9 @@ class BlogPostPage(Page):
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
 
     def main_image(self):
-        thumbnail_image = self.image_gallery.first
+        thumbnail_image = self.image_gallery.first()
         if thumbnail_image:
-            return thumbnail_image.image
+            return thumbnail_image.images
         else:
             return None
         

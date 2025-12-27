@@ -1,6 +1,218 @@
 :root {
     --white: #ffffff;
-    --pink: #ff7ab8;
-    --pink-light: #fff1f8;
+    --pink: #f65aa3;
+    --pink-light: #f4d1e3;
     --gray: #555;
+}
+/* ========== Daisy Theme Base ========== */
+
+body {
+    background: var(--pink-light);
+    color: var(--gray);
+}
+
+/* Generic page wrapper */
+.page-wrapper {
+    max-width: 850px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 18px;
+    box-shadow: 0 6px 14px rgba(255, 160, 200, 0.22);
+}
+
+/* Page header (title section) */
+.page-hero {
+    max-width: 850px;
+    margin: 1.5rem auto 1.5rem;
+    padding: 2.5rem 2rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(255, 160, 200, 0.25);
+    text-align: center;
+}
+
+.page-hero h1 {
+    color: var(--pink);
+    font-size: 2.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-hero p {
+    font-size: 1.1rem;
+    color: var(--gray);
+}
+
+/* Typography inside rich text */
+.page-wrapper h2,
+.page-wrapper h3,
+.page-wrapper h4 {
+    color: var(--pink);
+    margin-top: 1.8rem;
+}
+
+.page-wrapper p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Links */
+.page-wrapper a {
+    color: var(--pink);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+.page-wrapper a:hover {
+    opacity: 0.8;
+}
+
+/* Images inside content */
+.page-wrapper img {
+    max-width: 100%;
+    border-radius: 14px;
+    margin: 1.5rem 0;
+}
+
+/* Lists */
+.page-wrapper ul,
+.page-wrapper ol {
+    padding-left: 1.5rem;
+}
+
+.page-wrapper li {
+    margin-bottom: 0.5rem;
+}
+
+/* Forms (used by contact page etc.) */
+.page-wrapper input,
+.page-wrapper textarea,
+.page-wrapper select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid #f1c4d6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.page-wrapper input:focus,
+.page-wrapper textarea:focus {
+    outline: none;
+    border-color: var(--pink);
+}
+
+/* Buttons */
+.page-wrapper button,
+.page-wrapper input[type="submit"] {
+    background: var(--pink);
+    color: var(--white);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.page-wrapper button:hover,
+.page-wrapper input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* ========== Blog Index ========== */
+
+.blog-index {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+}
+
+.blog-card {
+    background: var(--white);
+    padding: 1.2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(255, 160, 200, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+}
+
+.blog-card h3 {
+    color: var(--pink);
+    margin-bottom: 0.6rem;
+}
+
+.blog-card-image img {
+    border-radius: 12px;
+}
+
+/* ========== Blog Post ========== */
+
+.blog-post .post-date {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.author-info ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.author-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.author-item img {
+    border-radius: 50%;
+}
+
+.post-intro {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.post-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+}
+
+.gallery-item img {
+    border-radius: 14px;
+}
+
+.post-footer {
+    margin-top: 2.5rem;
+}
+
+.tag-list {
+    margin-top: 1rem;
+}
+
+.tag-button {
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: var(--pink-light);
+    color: var(--pink);
+    font-size: 0.85rem;
+}
+
+/* ========== Tag Index ========== */
+
+.tag-post-item {
+    margin-bottom: 0.8rem;
+}
+
+.tag-post-item a {
+    font-weight: 500;
 }

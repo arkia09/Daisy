@@ -1,21 +1,29 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags%}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
 {% block content %}
-{% comment %} <h1>Hello welcome to our first blog!</h1> {% endcomment %}
-<h1>{{page.title|richtext}}</h1>
-{{page.description|richtext}}
-{% for post in blogposts %}
-<div class="blog-post">
-    <a href="{% pageurl post %}">
-        {{post.title.}}
-    </a>
-    {% with thumbnail_image=post.specific.main_image %}
-    {% if thumbnail_image %}
-    <div class="thumbnail-image">
-        {% image thumbnail_image fill-300x200%}
-    </div>
+<div class="page-hero">
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+        <p>{{ page.description|richtext }}</p>
     {% endif %}
-    {% endwith %}
 </div>
-{% endfor %}
+
+<div class="page-wrapper blog-index">
+    {% for post in blogposts %}
+        <div class="blog-card">
+            <a href="{% pageurl post %}">
+                <h3>{{ post.title }}</h3>
+            </a>
+
+            {% with thumbnail_image=post.specific.main_image %}
+                {% if thumbnail_image %}
+                    <div class="blog-card-image">
+                        {% image thumbnail_image fill-300x200 %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
