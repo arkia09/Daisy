@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
-{% block content %}
-{% if request.GET.tag %}
-    <h1>Below are the blog posts with tag: "{{request.GET.tag}}"</h1>
-{% endif %}
 
-{% for post in blogposts  %}
-<div class="blogpost_item">
-    <p>
-        <a href="{% pageurl post %}">
-            {{post.title}}
-        </a>
-    </p>
+{% block content %}
+<div class="page-hero">
+    {% if request.GET.tag %}
+        <h1>Posts tagged "{{ request.GET.tag }}"</h1>
+    {% else %}
+        <h1>Tagged posts</h1>
+    {% endif %}
 </div>
-{% endfor %}
+
+<div class="page-wrapper tag-index">
+    {% for post in blogposts %}
+        <div class="tag-post-item">
+            <a href="{% pageurl post %}">{{ post.title }}</a>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
